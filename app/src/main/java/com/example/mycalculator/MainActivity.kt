@@ -41,15 +41,9 @@ class MainActivity : ComponentActivity() {
                         Spacer(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(80.dp)
-                                .background(Color.Red)
+                                .height(140.dp)
                         )
                         Column {
-                            Text(
-                                text = "1488",
-                                fontSize = 60.sp,
-                                color = Color.White
-                            )
                             Text(
                                 text = "1337+3228",
                                 fontSize = 60.sp,
