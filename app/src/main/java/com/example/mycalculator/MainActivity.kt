@@ -4,61 +4,262 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mycalculator.ui.theme.Black
+import com.example.mycalculator.ui.theme.DarkGray
 import com.example.mycalculator.ui.theme.MyCalculatorTheme
+import com.example.mycalculator.ui.theme.Red
+import com.example.mycalculator.ui.theme.White
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyCalculatorTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.Black
-                ) {
-                    Column {
-                        Spacer(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(140.dp)
-                        )
-                        Column {
-                            Text(
-                                text = "1337+3228",
-                                fontSize = 60.sp,
-                                color = Color.White
-                            )
-                            Text(
-                                text = "=12345678",
-                                fontSize = 50.sp,
-                                color = Color.Gray
-                            )
-                        }
-                        Column {
-                            Row {
+                val viewModel = viewModel<CalculatorViewModel>()
+                val state: CalculatorState
+                val buttonSpacing: Dp = 8.dp
+                val onAction: (CalculatorAction) -> Unit
 
+                Box(
+                    contentAlignment = Alignment.BottomCenter,
+                    modifier = Modifier
+                        .background(color = Black)
+                        .fillMaxSize()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(buttonSpacing)
+                    ) {
+                        Text(
+                            text = "6969+3228",
+                            fontSize = 60.sp,
+                            textAlign = TextAlign.End,
+                            color = White,
+                            maxLines = 2
+                            )
+                        Text(
+                            text = "=133777",
+                            fontSize = 50.sp,
+                            textAlign = TextAlign.End,
+                            color = DarkGray
+                        )
+                        Row(
+                            modifier = Modifier
+                                .padding(buttonSpacing)
+                        ) {
+                            Column {
+                                CalculatorButton(
+                                    color = Red,
+                                    symbol = "C",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Clear)
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "1",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(1))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "4",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(4))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "7",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(7))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "%",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Operation(CalculatorOperation.Percent))
+                                    }
+                                )
                             }
+                            Column {
+                                CalculatorButton(
+                                    color = Red,
+                                    symbol = "/",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Operation(CalculatorOperation.Divide))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "2",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(2))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "5",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(5))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "8",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(8))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "0",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(0))
+                                    }
+                                )
+                            }
+                            Column {
+                                CalculatorButton(
+                                    color = Red,
+                                    symbol = "*",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Operation(CalculatorOperation.Multiply))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "3",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(3))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "6",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(6))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = "9",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Number(9))
+                                    }
+                                )
+                                CalculatorButton(
+                                    color = White,
+                                    symbol = ".",
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f),
+                                    onClick = {
+                                        onAction(CalculatorAction.Decimal)
+                                    }
+                                )
+                            }
+                            CalculatorButton(
+                                color = Red,
+                                symbol = "<-",
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .weight(1f),
+                                onClick = {
+                                    onAction(CalculatorAction.Delete)
+                                }
+                            )
+                            CalculatorButton(
+                                color = Red,
+                                symbol = "-",
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .weight(1f),
+                                onClick = {
+                                    onAction(CalculatorAction.Operation(CalculatorOperation.Subtract))
+                                }
+                            )
+                            CalculatorButton(
+                                color = Red,
+                                symbol = "+",
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .weight(1f),
+                                onClick = {
+                                    onAction(CalculatorAction.Operation(CalculatorOperation.Add))
+                                }
+                            )
+                            CalculatorButton(
+                                color = White,
+                                symbol = "*",
+                                modifier = Modifier
+                                    .aspectRatio(2f)
+                                    .weight(2f)
+                                    .background(Red),
+                                onClick = {
+                                    onAction(CalculatorAction.Calculate)
+                                }
+                            )
                         }
                     }
                 }
