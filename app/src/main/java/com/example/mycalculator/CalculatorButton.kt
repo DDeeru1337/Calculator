@@ -15,7 +15,8 @@ import androidx.compose.ui.unit.sp
 fun CalculatorButton(
     symbol : String,
     modifier : Modifier,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    color: Color
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -27,7 +28,7 @@ fun CalculatorButton(
         Text(
             text = symbol,
             fontSize = 35.sp,
-            color = Color.White
+            color = color
             )
     }
 }
