@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 val viewModel = viewModel<CalculatorViewModel>()
                 val state: CalculatorState
                 val buttonSpacing: Dp = 8.dp
-                val onAction: (CalculatorAction) -> Unit
+                val onAction: (CalculatorAction) -> Unit = viewModel::onAction
 
                 Box(
                     contentAlignment = Alignment.BottomCenter,
@@ -47,18 +47,12 @@ class MainActivity : ComponentActivity() {
                             .padding(buttonSpacing)
                     ) {
                         Text(
-                            text = "6969+3228",
+                            text = number1 + (CalculatorAction.Operation.symbol) + number2,
                             fontSize = 60.sp,
                             textAlign = TextAlign.End,
                             color = White,
                             maxLines = 2
                             )
-                        Text(
-                            text = "=133777",
-                            fontSize = 50.sp,
-                            textAlign = TextAlign.End,
-                            color = DarkGray
-                        )
                         Row(
                             modifier = Modifier
                                 .padding(buttonSpacing)
