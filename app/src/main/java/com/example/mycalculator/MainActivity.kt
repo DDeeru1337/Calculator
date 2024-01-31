@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyCalculatorTheme {
                 val viewModel = viewModel<CalculatorViewModel>()
-                val state: CalculatorState
+                val state = viewModel.state
                 val buttonSpacing: Dp = 8.dp
                 val onAction: (CalculatorAction) -> Unit = viewModel::onAction
 
@@ -47,8 +47,8 @@ class MainActivity : ComponentActivity() {
                             .padding(buttonSpacing)
                     ) {
                         Text(
-                            text = number1 + (CalculatorAction.Operation.symbol) + number2,
-                            fontSize = 60.sp,
+                            text = state.number1 + (state.operation?.symbol ?: "") + state.number2,
+                            fontSize = 55.sp,
                             textAlign = TextAlign.End,
                             color = White,
                             maxLines = 2
