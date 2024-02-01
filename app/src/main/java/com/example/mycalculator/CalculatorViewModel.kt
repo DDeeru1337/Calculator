@@ -21,7 +21,7 @@ class CalculatorViewModel: ViewModel() {
     }
 
     private fun enterOperation(operation: CalculatorOperation) {
-        if (state.number1.isNotBlank()) {
+        if (state.number1.isNotBlank() && state.number2.isBlank()) {
             state = state.copy(operation = operation)
         }
     }
@@ -49,7 +49,7 @@ class CalculatorViewModel: ViewModel() {
 
     private fun performDeletion() {
         if (state.number2.isNotBlank()) {
-            state = state.copy(state.number2.dropLast(1))
+            state = state.copy(number2 = state.number2.dropLast(1))
             return
         }
         if (state.operation != null) {
@@ -57,7 +57,7 @@ class CalculatorViewModel: ViewModel() {
             return
         }
         if (state.number1.isNotBlank()) {
-            state = state.copy(state.number1.dropLast(1))
+            state = state.copy(number1 = state.number1.dropLast(1))
         }
     }
 

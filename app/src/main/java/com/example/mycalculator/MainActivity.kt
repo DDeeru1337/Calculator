@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
@@ -46,28 +47,32 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .align(Alignment.BottomCenter)
+                            .align(Alignment.BottomCenter),
+                        Arrangement.spacedBy(buttonSpacing)
                     ) {
                         Text(
                             text = state.number1 + (state.operation?.symbol ?: "") + state.number2,
                             textAlign = TextAlign.End,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(vertical = 32.dp),
+                                .padding(vertical = 40.dp),
                             fontWeight = FontWeight.Light,
-                            fontSize = 80.sp,
+                            fontSize = 70.sp,
                             color = White,
                             maxLines = 2
                         )
                         Box(
                             modifier = Modifier
                                 .background(DarkGray)
+                                .fillMaxWidth(),
+                            contentAlignment = Alignment.BottomCenter
                         ) {
                             Row(
                                 modifier = Modifier
-                                    .fillMaxWidth()
+                                    .fillMaxWidth(),
+                                Arrangement.spacedBy(buttonSpacing)
                             ) {
-                                Column {
+                                Column{
                                     CalculatorButton(
                                         color = Red,
                                         symbol = "C",
@@ -119,9 +124,7 @@ class MainActivity : ComponentActivity() {
                                         }
                                     )
                                 }
-                                Column(
-                                    verticalArrangement = Arrangement.spacedBy(buttonSpacing)
-                                ) {
+                                Column{
                                     CalculatorButton(
                                         color = Red,
                                         symbol = "/",
@@ -225,9 +228,7 @@ class MainActivity : ComponentActivity() {
                                         }
                                     )
                                 }
-                                Column(
-                                    verticalArrangement = Arrangement.spacedBy(buttonSpacing)
-                                ) {
+                                Column{
                                     CalculatorButton(
                                         color = Red,
                                         symbol = "<-",
